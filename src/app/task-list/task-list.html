@@ -1,6 +1,8 @@
 <div class="task-list">
   <div class="filter-container">
-    <!-- TODO: Update to use signal: [(ngModel)]="filter()" -->
+    <!-- TODO: Update to use signal -->
+    <!-- NOTE: filter will become a function... which will not work with 2 way binding -->
+    <!-- check bottom of TODO.md for help -->
     <input type="text" placeholder="Filter tasks..." [(ngModel)]="filter">
     <button (click)="clearFilter()">Clear</button>
   </div>
