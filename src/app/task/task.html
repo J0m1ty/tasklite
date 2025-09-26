@@ -1,7 +1,11 @@
-<div class="task">
-    <h3>{{ task.title }}</h3>
-    <p>Status: {{ task.done ? 'Completed' : 'Pending' }}</p>
-    <button (click)="onToggleComplete()" id="toggle-complete-btn">
-      {{ task.done ? 'Mark Incomplete' : 'Mark Complete' }}
-    </button>
-</div>
+<h3>{{ task.title }}</h3>
+<p>Status: {{ task.done ? 'Completed' : 'Pending' }}</p>
+@if (task.notes) {
+<p class="notes">Notes: {{ task.notes }}</p>
+}
+<button (click)="onToggleComplete()" id="toggle-complete-btn">
+  {{ task.done ? 'Mark Incomplete' : 'Mark Complete' }}
+</button>
+<button (click)="onDelete()" id="delete-btn" class="delete-btn">
+  Delete
+</button>

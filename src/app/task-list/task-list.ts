@@ -18,5 +18,7 @@ export class TaskList {
     console.log('Task completed:', task);
   }
 
-  // TODO: delete tasks (hint: use this.tasks = this.tasks.filter(...))
+  onTaskDeleted(task: TaskModel) {
+    this.tasks = this.tasks.filter(t => t.id !== task.id);
+  }
 }

@@ -10,12 +10,14 @@ import { TaskModel } from '../task';
 export class Task {
   @Input() task!: TaskModel;
   @Output() taskCompleted = new EventEmitter<TaskModel>();
-  // add support for deleting tasks
+  @Output() taskDeleted = new EventEmitter<TaskModel>();
 
   onToggleComplete() {
     this.task.done = !this.task.done;
     this.taskCompleted.emit(this.task);
   }
 
-  // add onDelete method
+  onDelete() {
+    this.taskDeleted.emit(this.task);
+  }
 }
