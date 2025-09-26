@@ -1,14 +1,15 @@
 <div class="task-list">
-    <div class="filter-container">
-        <!-- TODO: create a filter input, two-way binded, with a clear button -->
-    </div>
+  <div class="filter-container">
+    <!-- TODO: Update to use signal: [(ngModel)]="filter()" -->
+    <input type="text" placeholder="Filter tasks..." [(ngModel)]="filter">
+    <button (click)="clearFilter()">Clear</button>
+  </div>
   
-  <!-- TODO: display filtered tasks -->
-  @for (task of tasks; track task.id) {
+  @for (task of filtered(); track task.id) {
     <app-task [task]="task" (taskCompleted)="onTaskCompleted($event)" (taskDeleted)="onTaskDeleted($event)"></app-task>
   } @empty {
-    <p class="no-tasks">No tasks available. Add some tasks to get started!</p>
+    <p class="no-tasks">No tasks match your filter. Try a different search term!</p>
   }
   
-  <!-- EXTRA TODO: Add task count display -->
+  <p class="task-count">Showing {{ filtered().length }} of {{ tasks.length }} tasks</p>
 </div>

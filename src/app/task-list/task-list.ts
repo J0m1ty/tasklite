@@ -1,3 +1,4 @@
+// TODO: Import signal and computed from '@angular/core'
 import { Component } from '@angular/core';
 import { TaskModel } from '../task';
 
@@ -8,6 +9,7 @@ import { TaskModel } from '../task';
   styleUrl: './task-list.css'
 })
 export class TaskList {
+  // TODO: Convert to signal: tasks = signal<TaskModel[]>([...])
   tasks: TaskModel[] = [
     { id: 1, title: 'Take 261', done: false },
     { id: 2, title: 'Learn Angular', done: true },
@@ -16,19 +18,28 @@ export class TaskList {
     { id: 5, title: 'Master TypeScript', done: true }
   ];
 
-  // TODO: Add filter property for two-way data binding
+  // TODO: Convert to signal: filter = signal('')
+  filter: string = '';
 
   onTaskCompleted(task: TaskModel) {
     console.log('Task completed:', task);
   }
 
   onTaskDeleted(task: TaskModel) {
+    // TODO: Update to use signal: this.tasks.update(tasks => ...)
     this.tasks = this.tasks.filter(t => t.id !== task.id);
   }
 
-  // TODO: Create filtered() method that returns tasks matching the filter
-  // hint: use .filter(task => ...) on this.tasks
-  // what to do when there's no filter?
+  // TODO: Convert to computed signal: filtered = computed(() => { ... })
+  filtered() {
+    if (!this.filter) return this.tasks;
+    return this.tasks.filter(task => 
+      task.title.toLowerCase().includes(this.filter.toLowerCase())
+    );
+  }
 
-  // TODO: Create clearFilter() method to reset filter
+  clearFilter() {
+    // TODO: Update to use signal (hint: .set)
+    this.filter = '';
+  }
 }
