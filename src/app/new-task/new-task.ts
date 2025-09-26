@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-// TODO: Import Router and NgForm from Angular packages
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -9,15 +10,25 @@ import { TaskService } from '../task.service';
     styleUrl: './new-task.css'
 })
 export class NewTaskComponent {
-    // TODO: Add properties for form data binding
+    title: string = '';
+    notes: string = '';
 
-    constructor(private taskService: TaskService) {}
+    constructor(
+        private taskService: TaskService,
+        private router: Router
+    ) {}
 
-    // TODO: Implement form submission method
-    // onSubmit(form: NgForm) {
-    //     // Check if form is valid
-    //     // Create new task using taskService
-    //     // Navigate back to tasks
-    //     // Reset form
-    // }
+    onSubmit(form: NgForm) {
+        if (form.valid) {
+            this.taskService.addNewTask(this.title, this.notes);
+            this.router.navigate(['/tasks']);
+            form.resetForm();
+            this.title = '';
+            this.notes = '';
+        }
+    }
+
+    onCancel() {
+        this.router.navigate(['/tasks']);
+    }
 }

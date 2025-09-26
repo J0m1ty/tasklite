@@ -1,28 +1,46 @@
 <div class="card">
     <h2>Create New Task</h2>
     
-    <!-- TODO: Complete this form with template-driven form features -->
-    <form>
-        <!-- TODO: Add form reference, ngSubmit handler -->
-        
-        <div class="form-group">
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+        <div class="form-group" [class.has-error]="titleField.invalid && titleField.touched">
             <label for="title">Title</label>
-            <!-- TODO: Add input with ngModel, name, required -->
-            <input type="text" id="title" placeholder="Enter task title">
-            <!-- TODO: Add validation error message -->
+            <input 
+                type="text" 
+                id="title" 
+                name="title"
+                [(ngModel)]="title"
+                #titleField="ngModel"
+                required
+                placeholder="Enter task title">
+            @if (titleField.invalid && titleField.touched) {
+                <div class="error-message">
+                    @if (titleField.errors?.['required']) {
+                        Title is required
+                    }
+                </div>
+            }
         </div>
         
         <div class="form-group">
             <label for="notes">Notes (optional)</label>
-            <!-- TODO: Add textarea with ngModel -->
-            <textarea id="notes" placeholder="Add any notes..."></textarea>
+            <textarea 
+                id="notes" 
+                name="notes"
+                [(ngModel)]="notes"
+                placeholder="Add any notes..."></textarea>
         </div>
         
         <div class="form-actions">
-            <!-- TODO: Add submit button with disabled state -->
-            <button type="submit">Create Task</button>
-            <!-- OPTIONAL TODO: Add cancel button -->
-            <button type="button">Cancel</button>
+            <button 
+                type="submit" 
+                [disabled]="!taskForm.valid">
+                Create Task
+            </button>
+            <button 
+                type="button" 
+                (click)="onCancel()">
+                Cancel
+            </button>
         </div>
     </form>
 </div>

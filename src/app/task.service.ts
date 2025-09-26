@@ -31,11 +31,12 @@ export class TaskService {
     );
   }
 
-  addNewTask(title: string) {
+  addNewTask(title: string, notes?: string) {
     const newId = Math.max(...this.#tasks().map(t => t.id)) + 1;
     const newTask: TaskModel = {
       id: newId,
       title,
+      notes,
       done: false
     };
     this.addTask(newTask);
