@@ -1,2 +1,7 @@
-<div>task placeholder</div>
-<!-- TODO make this display task's title and status -->
+<div class="task">
+    <h3>{{ task.title }}</h3>
+    <p>Status: {{ task.done ? 'Completed' : 'Pending' }}</p>
+    <button (click)="onToggleComplete()" id="toggle-complete-btn">
+      {{ task.done ? 'Mark Incomplete' : 'Mark Complete' }}
+    </button>
+</div>

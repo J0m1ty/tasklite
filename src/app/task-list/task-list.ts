@@ -13,4 +13,10 @@ export class TaskList {
     { id: 2, title: 'Learn Angular', done: true },
     { id: 3, title: 'Profit', done: false, notes: '???' }
   ];
+
+  onTaskCompleted(task: TaskModel) {
+    console.log('Task completed:', task);
+  }
+
+  // TODO: delete tasks (hint: use this.tasks = this.tasks.filter(...))
 }

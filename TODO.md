@@ -1,5 +1,12 @@
-### Step 2: Data Binding
+### Step 3
 
-- Manually create three <app-task>'s, one for each task in task-list.ts
-- Use property binding in task-list to 
-- Update task's template to display the task title and task status
+- Display a task's notes optionally with @if
+- Display the list of tasks automatically with @for
+- EXTRA: use track inside @for (look up what this means)
+- Mimic the @Output added into task.ts to allow for deleting tasks
+    - create an onDelete method in Task
+    - wire into a new button in Task's template
+    - catch the @Output in TaskList's template
+    - support deleting Tasks in TaskList's component
+
+- EXTRA: style task-list with :root (look up what this means)
