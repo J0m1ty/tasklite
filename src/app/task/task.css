@@ -24,20 +24,38 @@ p {
 }
 
 #toggle-complete-btn {
-    padding: 5px 10px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
     cursor: pointer;
     background-color: #007bff;
     color: white;
-    margin-right: 10px;
+    margin-right: 12px;
+    margin-top: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#toggle-complete-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
 }
 
 .delete-btn {
-    padding: 5px 10px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
     cursor: pointer;
     background-color: #dc3545;
     color: white;
+    margin-top: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
