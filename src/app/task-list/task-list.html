@@ -1,7 +1,6 @@
 <div class="task-list">
   <div class="filter-container">
-    <!-- TODO: Update to use signal: [(ngModel)]="filter()" -->
-    <input type="text" placeholder="Filter tasks..." [(ngModel)]="filter">
+    <input type="text" placeholder="Filter tasks..." [ngModel]="filter()" (ngModelChange)="filter.set($event)">
     <button (click)="clearFilter()">Clear</button>
   </div>
   
@@ -11,5 +10,5 @@
     <p class="no-tasks">No tasks match your filter. Try a different search term!</p>
   }
   
-  <p class="task-count">Showing {{ filtered().length }} of {{ tasks.length }} tasks</p>
+  <p class="task-count">Showing {{ taskCounts().filtered }} of {{ taskCounts().total }} tasks</p>
 </div>

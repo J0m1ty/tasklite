@@ -1,5 +1,5 @@
-// TODO: Import signal and computed from '@angular/core'
-import { Component } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
+// TODO: Import TaskService
 import { TaskModel } from '../task';
 
 @Component({
@@ -9,37 +9,45 @@ import { TaskModel } from '../task';
   styleUrl: './task-list.css'
 })
 export class TaskList {
-  // TODO: Convert to signal: tasks = signal<TaskModel[]>([...])
-  tasks: TaskModel[] = [
+  // TODO: Add constructor and inject TaskService
+
+  // TODO: Remove this local tasks array
+  tasks = signal<TaskModel[]>([
     { id: 1, title: 'Take 261', done: false },
     { id: 2, title: 'Learn Angular', done: true },
     { id: 3, title: 'Profit', done: false, notes: '???' },
     { id: 4, title: 'Build Angular App', done: false },
     { id: 5, title: 'Master TypeScript', done: true }
-  ];
+  ]);
 
-  // TODO: Convert to signal: filter = signal('')
-  filter: string = '';
+  filter = signal('');
 
   onTaskCompleted(task: TaskModel) {
+    // TODO: Call taskService.toggleTask(task.id) to update the task's done status
     console.log('Task completed:', task);
   }
 
   onTaskDeleted(task: TaskModel) {
-    // TODO: Update to use signal: this.tasks.update(tasks => ...)
-    this.tasks = this.tasks.filter(t => t.id !== task.id);
+    // TODO: Call taskService.deleteTask(task.id) instead
+    this.tasks.update(tasks => tasks.filter(t => t.id !== task.id));
   }
 
-  // TODO: Convert to computed signal: filtered = computed(() => { ... })
-  filtered() {
-    if (!this.filter) return this.tasks;
-    return this.tasks.filter(task => 
-      task.title.toLowerCase().includes(this.filter.toLowerCase())
+  // TODO: Update to use taskService.tasks() instead of this.tasks()
+  filtered = computed(() => {
+    const filterValue = this.filter();
+    if (!filterValue) return this.tasks();
+    return this.tasks().filter(task => 
+      task.title.toLowerCase().includes(filterValue.toLowerCase())
     );
-  }
+  });
+
+  // TODO: Update to use taskService.tasks() instead of this.tasks()
+  taskCounts = computed(() => ({
+    total: this.tasks().length,
+    filtered: this.filtered().length
+  }));
 
   clearFilter() {
-    // TODO: Update to use signal (hint: .set)
-    this.filter = '';
+    this.filter.set('');
   }
 }

@@ -13,7 +13,6 @@ export class Task {
   @Output() taskDeleted = new EventEmitter<TaskModel>();
 
   onToggleComplete() {
-    this.task.done = !this.task.done;
     this.taskCompleted.emit(this.task);
   }
 
