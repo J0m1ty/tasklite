@@ -1,5 +1,4 @@
-<!-- TODO: make clicking the title take you to /task/:id -->
-<h3>{{ task.title }}</h3>
+<h3><a [routerLink]="['/task', task.id]">{{ task.title }}</a></h3>
 <p>Status: {{ task.done ? 'Completed' : 'Pending' }}</p>
 @if (task.notes) {
 <p class="notes">Notes: {{ task.notes }}</p>
