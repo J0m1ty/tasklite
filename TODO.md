@@ -7,7 +7,9 @@
 - Update app.html to use router-outlet
     - Replace `<app-task-list></app-task-list>` with `<router-outlet></router-outlet>`
 
-- Add navigation between components in app.html, use <a>'s and `routerLink`
+- Add navigation between components in app.html with `routerLink`
+    - Update app.html
+    - Update task.html
 
 - Create a route guard to protect invalid task IDs
     - Run `ng generate guard task-exists` in terminal
