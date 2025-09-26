@@ -10,4 +10,4 @@
     - catch the @Output in TaskList's template
     - support deleting Tasks in TaskList's component
 
-- EXTRA: style task-list with :host (look up what this means)
+- EXTRA: style task with :host instead of an extra div (look up what this means)
