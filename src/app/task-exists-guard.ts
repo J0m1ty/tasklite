@@ -1,5 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { map, tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { TaskService } from './task.service';
 
 export const taskExistsGuard: CanActivateFn = (route, state) => {
@@ -13,12 +15,18 @@ export const taskExistsGuard: CanActivateFn = (route, state) => {
     return false;
   }
   
-  const task = taskService.getTaskById(+taskId);
-  
-  if (!task) {
-    router.navigate(['/tasks']);
-    return false;
-  }
-  
-  return true;
+  // guards can automatically subscribe
+  return taskService.getTask(+taskId).pipe(
+    map(task => {
+      if (!task) {
+        router.navigate(['/tasks']);
+        return false;
+      }
+      return true;
+    }),
+    catchError(() => {
+      router.navigate(['/tasks']);
+      return of(false);
+    })
+  );
 };

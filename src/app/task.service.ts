@@ -28,7 +28,6 @@ export class TaskService {
     );
   }
   
-  // TODO: use this in the guard
   getTask(id: number): Observable<TaskModel | undefined> {
     return this.http.get<TaskModel[]>(this.tasksUrl).pipe(
       map(tasks => tasks.find(task => task.id === id)),
@@ -66,7 +65,6 @@ export class TaskService {
     console.log(`deleted task id=${id}`);
   }
   
-  // TODO: DELETE THIS
   getTaskById(id: number): TaskModel | undefined {
     return this.#tasks().find(task => task.id === id);
   }
