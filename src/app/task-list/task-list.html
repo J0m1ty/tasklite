@@ -1,7 +1,14 @@
 <div class="task-list">
+    <div class="filter-container">
+        <!-- TODO: create a filter input, two-way binded, with a clear button -->
+    </div>
+  
+  <!-- TODO: display filtered tasks -->
   @for (task of tasks; track task.id) {
     <app-task [task]="task" (taskCompleted)="onTaskCompleted($event)" (taskDeleted)="onTaskDeleted($event)"></app-task>
   } @empty {
     <p class="no-tasks">No tasks available. Add some tasks to get started!</p>
   }
+  
+  <!-- EXTRA TODO: Add task count display -->
 </div>
