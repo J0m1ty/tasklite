@@ -1,22 +1,15 @@
-### Step 6 - Task Service
+### Step 7 - Routing
 
-- Complete the TaskService (already created for you in task.service.ts)
-    - Add `providedIn` to the @Injectable decorator (use IDE autocomplete)
-    - Implement `addTask()` method using `this.#tasks.update()`
-    - Implement `deleteTask()` method using `this.#tasks.update()` with filter
-    - Implement `toggleTask()` method using `this.#tasks.update()` with map
+- Set up routing configuration in app-routing-module.ts
+    - Add routes for: `''`,  `'/tasks'`, `'/task/:id'`, `'/new'`
+    - Check the Angular docs for routing syntax if needed
 
-- Inject the service into TaskList component
-    - Import TaskService in task-list.ts
-    - Add constructor with dependency injection: `constructor(private taskService: TaskService) {}`
-    - Remove the local tasks signal and use `taskService.tasks()` instead
+- Update app.html to use router-outlet
+    - Replace `<app-task-list></app-task-list>` with `<router-outlet></router-outlet>`
 
-- Update component methods to use service
-    - Update `onTaskDeleted()` to call `taskService.deleteTask(task.id)`
-    - Update `onTaskCompleted()` to call `taskService.toggleTask(task.id)`
-    - Update `filtered` computed to use `taskService.tasks()`
-    - Update `taskCounts` computed to use `taskService.tasks()`
+- Add navigation between components in app.html, use <a>'s and `routerLink`
 
-- EXTRA: Implement `addNewTask()` method in service
-    - Generate auto-incrementing IDs for new tasks
-    - Add input field and button in template to create new tasks
+- Create a route guard to protect invalid task IDs
+    - Run `ng generate guard task-exists` in terminal
+    - Redirect to '/tasks' if task doesn't exist
+    - Check Angular docs for guidance

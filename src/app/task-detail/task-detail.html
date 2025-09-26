@@ -1,0 +1,46 @@
+<div class="task-detail-container">
+  @if (task(); as currentTask) {
+    <div class="task-detail">
+      <header class="task-header">
+        <h2>{{ currentTask.title }}</h2>
+        <span class="task-status" [class.completed]="currentTask.done">
+          {{ currentTask.done ? 'Completed' : 'Pending' }}
+        </span>
+      </header>
+      
+      <div class="task-info">
+        <p><strong>Task ID:</strong> {{ currentTask.id }}</p>
+        @if (currentTask.notes) {
+          <div class="task-notes">
+            <strong>Notes:</strong>
+            <p>{{ currentTask.notes }}</p>
+          </div>
+        }
+      </div>
+      
+      <div class="task-actions">
+        <button 
+          class="btn btn-primary" 
+          (click)="toggleTask()">
+          {{ currentTask.done ? 'Mark Incomplete' : 'Mark Complete' }}
+        </button>
+        <button 
+          class="btn btn-danger" 
+          (click)="deleteTask()">
+          Delete Task
+        </button>
+        <button 
+          class="btn btn-secondary" 
+          (click)="goBack()">
+          Back to Tasks
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="task-not-found">
+      <h2>Task Not Found</h2>
+      <p>The task you're looking for doesn't exist.</p>
+      <button class="btn btn-primary" (click)="goBack()">Back to Tasks</button>
+    </div>
+  }
+</div>

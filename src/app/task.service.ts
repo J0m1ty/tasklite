@@ -1,8 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { TaskModel } from './task';
 
-// TODO: Add providedIn to @Injectable() - use your IDE's autocomplete to choose the best option
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TaskService {
   #tasks = signal<TaskModel[]>([
     { id: 1, title: 'Take 261', done: false },
@@ -12,24 +13,35 @@ export class TaskService {
     { id: 5, title: 'Master TypeScript', done: true }
   ]);
 
-  tasks = this.#tasks.asReadonly(); // components can read but not modify directly
+  tasks = this.#tasks.asReadonly();
 
   addTask(task: TaskModel) {
-    // TODO: Use this.#tasks.update() to add the new task to the array
+    this.#tasks.update(tasks => [...tasks, task]);
   }
 
   deleteTask(id: number) {
-    // TODO: Use this.#tasks.update() to filter out the task with the given id
+    this.#tasks.update(tasks => tasks.filter(t => t.id !== id));
   }
 
   toggleTask(id: number) {
-    // TODO: Use this.#tasks.update() to find the task and toggle its done property
-    // Hint: Use map() to create a new array with the updated task
+    this.#tasks.update(tasks => 
+      tasks.map(task => 
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    );
   }
 
-  // EXTRA: Method to add a task with just a title (auto-generate ID)
   addNewTask(title: string) {
-    // TODO: Create a new task with auto-generated ID and add it
-    // Hint: Use Math.max(...this.#tasks().map(t => t.id)) + 1 for new ID
+    const newId = Math.max(...this.#tasks().map(t => t.id)) + 1;
+    const newTask: TaskModel = {
+      id: newId,
+      title,
+      done: false
+    };
+    this.addTask(newTask);
+  }
+
+  getTaskById(id: number): TaskModel | undefined {
+    return this.#tasks().find(task => task.id === id);
   }
 }

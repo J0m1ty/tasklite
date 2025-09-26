@@ -1,6 +1,6 @@
 import { Component, signal, computed } from '@angular/core';
-// TODO: Import TaskService
 import { TaskModel } from '../task';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,41 +9,28 @@ import { TaskModel } from '../task';
   styleUrl: './task-list.css'
 })
 export class TaskList {
-  // TODO: Add constructor and inject TaskService
-
-  // TODO: Remove this local tasks array
-  tasks = signal<TaskModel[]>([
-    { id: 1, title: 'Take 261', done: false },
-    { id: 2, title: 'Learn Angular', done: true },
-    { id: 3, title: 'Profit', done: false, notes: '???' },
-    { id: 4, title: 'Build Angular App', done: false },
-    { id: 5, title: 'Master TypeScript', done: true }
-  ]);
+  constructor(private taskService: TaskService) {}
 
   filter = signal('');
 
   onTaskCompleted(task: TaskModel) {
-    // TODO: Call taskService.toggleTask(task.id) to update the task's done status
-    console.log('Task completed:', task);
+    this.taskService.toggleTask(task.id);
   }
 
   onTaskDeleted(task: TaskModel) {
-    // TODO: Call taskService.deleteTask(task.id) instead
-    this.tasks.update(tasks => tasks.filter(t => t.id !== task.id));
+    this.taskService.deleteTask(task.id);
   }
 
-  // TODO: Update to use taskService.tasks() instead of this.tasks()
   filtered = computed(() => {
     const filterValue = this.filter();
-    if (!filterValue) return this.tasks();
-    return this.tasks().filter(task => 
+    if (!filterValue) return this.taskService.tasks();
+    return this.taskService.tasks().filter(task => 
       task.title.toLowerCase().includes(filterValue.toLowerCase())
     );
   });
 
-  // TODO: Update to use taskService.tasks() instead of this.tasks()
   taskCounts = computed(() => ({
-    total: this.tasks().length,
+    total: this.taskService.tasks().length,
     filtered: this.filtered().length
   }));
 

@@ -7,12 +7,18 @@ import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { Task } from './task/task';
 import { TaskList } from './task-list/task-list';
+import { TasksComponent } from './tasks/tasks';
+import { TaskDetailComponent } from './task-detail/task-detail';
+import { NewTaskComponent } from './new-task/new-task';
 
 @NgModule({
   declarations: [
     AppComponent,
     Task,
     TaskList,
+    TasksComponent,
+    TaskDetailComponent,
+    NewTaskComponent,
   ],
   imports: [
     BrowserModule,
