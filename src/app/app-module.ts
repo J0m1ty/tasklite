@@ -5,10 +5,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
+import { Task } from './task/task';
 
 @NgModule({
   declarations: [
     AppComponent,
+    Task,
   ],
   imports: [
     BrowserModule,
