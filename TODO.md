@@ -15,3 +15,26 @@
     - Run `ng generate guard task-exists` in terminal
     - Redirect to '/tasks' if task doesn't exist
     - Check Angular docs for guidance
+
+#### HINT: Guard function implementation (try on your own first)
+
+```
+const taskService = inject(TaskService);
+const router = inject(Router);
+
+const taskId = route.paramMap.get('id');
+
+if (!taskId) {
+    router.navigate(['/tasks']);
+    return false;
+}
+
+const task = taskService.getTaskById(+taskId);
+
+if (!task) {
+    router.navigate(['/tasks']);
+    return false;
+}
+```
+
+Note we can't inject into a constructor (there isn't one), so we inject into a variable.

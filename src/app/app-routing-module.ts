@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   // TODO: Add routes for '/tasks', '/task/:id', '/new'
-  // Check Angular docs for routing syntax if needed
+  // Add a CanActivate guard to the '/task/:id' route with a guard named task-exists
+  // Check Angular docs for generate command or routing syntax if needed
+  // Check TODO for guard implementation
 ];
 
 @NgModule({
