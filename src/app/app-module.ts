@@ -6,11 +6,13 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { Task } from './task/task';
+import { TaskList } from './task-list/task-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     Task,
+    TaskList,
   ],
   imports: [
     BrowserModule,

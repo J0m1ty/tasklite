@@ -2,7 +2,10 @@ import { Component, Input } from '@angular/core';
 import { TaskModel } from '../task';
 
 @Component({
-  // TODO[component] complete this section
+  selector: 'app-task',
+  standalone: false,
+  templateUrl: './task.html',
+  styleUrl: './task.css'
 })
 export class Task {
   @Input() task!: TaskModel;

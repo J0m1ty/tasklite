@@ -1,5 +1,5 @@
-### Step 1: Components
+### Step 2: Data Binding
 
-- Create a task-list component (remember: --no-standalone)
-- Update task-list's template to include a <app-task></app-task>
-- Fix task's @Component section
+- Manually create three <app-task>'s, one for each task in task-list.ts
+- Use property binding in task-list to 
+- Update task's template to display the task title and task status
