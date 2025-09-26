@@ -28,7 +28,7 @@ export class TaskService {
   }
 
   // EXTRA: Method to add a task with just a title (auto-generate ID)
-  addNewTask(title: string) {
+  addNewTask(title: string, notes?: string) {
     // TODO: Create a new task with auto-generated ID and add it
     // Hint: Use Math.max(...this.#tasks().map(t => t.id)) + 1 for new ID
   }
